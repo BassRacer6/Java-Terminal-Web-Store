@@ -7,14 +7,15 @@ public class Loja extends BancoDeDadosLoja{
 
     int opcaoSelecionada;
     Double ValorTotalDaCompra;
-    int idProdutoRemocao;
+    int indexProdutoRemocao;
     Scanner entrada = new Scanner(System.in);
+    int x = 0;
 
     Loja() {
-
+        
         do {
             System.out.println("Selecione uma das opcoes: ");
-            System.out.println("1 - Ver itens disponiveis");
+            System.out.println("1 - Ver itens disponíveis");
             System.out.println("2 - Ver carrinho de compras");
             System.out.println("3 - Adicionar ao carrinho");
             System.out.println("4 - Finalizar compra");
@@ -29,7 +30,14 @@ public class Loja extends BancoDeDadosLoja{
                     System.out.println("===========Vitrine===========");
                     System.out.println("Nome:" + i.nome);
                     System.out.println("Valor:" + i.valor);
-                    System.out.println("ID:" + i.id);
+                    System.out.println("Codigo:" + i.id);
+                    System.out.println("ID:" + x);
+                    x++;
+                    System.out.println("=============================");
+                }
+                x = 0;
+                if(InventarioDaLoja.size() == 0){
+                    System.out.println("========Vitrine vazia========");
                     System.out.println("=============================");
                 }
             //----------------------------------------------------------------------
@@ -39,16 +47,29 @@ public class Loja extends BancoDeDadosLoja{
                     System.out.println("=====Carrinho de Compras=====");
                     System.out.println("Nome:" + i.nome);
                     System.out.println("Valor:" + i.valor);
-                    System.out.println("ID:" + i.id);
+                    System.out.println("Codigo:" + i.id);
+                    System.out.println("ID:" + x);
+                    x++;
                     System.out.println("Quantidade: " + i.quantEscolhida);
+                    System.out.println("=============================");
+                }
+                x=0;
+                if(ListaDeCompra.size() == 0){
+                    System.out.println("=====Carrinho de Compras=====");
                     System.out.println("=============================");
                 }
             //----------------------------------------------------------------------
             // Aqui adiciona item ao carrinho. ->
             } else if (opcaoSelecionada == 3) {
                 ItemDoCarrinho itemDoCarrinho = new ItemDoCarrinho();
-                System.out.print("Informe o ID do produto: ");
+                System.out.print("Informe o código do produto: ");
                 itemDoCarrinho.id = entrada.nextInt();
+                for (ItemDaLoja i : InventarioDaLoja) {
+                    if(itemDoCarrinho.id == i.id){
+                        itemDoCarrinho.nome = i.nome;
+                        itemDoCarrinho.valor = i.valor;
+                    }
+                }
                 System.out.print("Informe a quantidade do produto: ");
                 itemDoCarrinho.quantEscolhida = entrada.nextInt();
                 ListaDeCompra.add(itemDoCarrinho);
@@ -70,24 +91,22 @@ public class Loja extends BancoDeDadosLoja{
                 itemLoja.nome = entrada.nextLine();
                 System.out.print("Informe o valor do produto: ");
                 itemLoja.valor = entrada.nextDouble();
-                System.out.print("Informe o código do produto: ");
-                itemLoja.id = entrada.nextInt();
                 InventarioDaLoja.add(itemLoja);
+                itemLoja.id = InventarioDaLoja.size() - 1;
             //----------------------------------------------------------------------
             // Aqui remove um item da vitrine. ->
             } else if (opcaoSelecionada == 6) {
                 System.out.println("Informe o ID do produto");
-                idProdutoRemocao = entrada.nextInt();
-                for (ItemDaLoja i : InventarioDaLoja) {
-                    if(i.id == idProdutoRemocao){
-                        InventarioDaLoja.remove(i);
-                        System.out.println("Item" + i.nome + " removido.");
-                    }
+                indexProdutoRemocao = entrada.nextInt();
+                for (int i = 0; i < InventarioDaLoja.size(); i++) {
+                    InventarioDaLoja.remove(indexProdutoRemocao);
+                    System.out.println("Produto removido com sucesso.");
                 }
-            } else {
+            } else if(opcaoSelecionada < 1 || opcaoSelecionada > 7){
                 System.out.println("Opção inválida!");
             }
         } while (opcaoSelecionada != 7);
         System.out.println("Obrigado, volte sempre!");
+        entrada.close();
     }
 }
