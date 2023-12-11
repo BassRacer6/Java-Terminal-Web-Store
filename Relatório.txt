@@ -1,0 +1,5 @@
+Inicialmente houveram problemas para excluir o último index de uma ArrayList. Tal problema adviu pois o objeto de referência na chamada estava sendo confundido
+com o index do mesmo objeto. Para resolver esse problema eu separei o ID do produto do código do produto. Dessa forma, o código do produto continua estático e o
+ID atualiza de acordo com a posição do item na lista. O cuidado maior necessário está na colocação do ID no lugar do código do produto em meio à remoção do
+respectivo produto. Mecânicas adicionais poderiam ser incrementadas, como quando dois items com o mesmo código são colocados, eles então são representados pelo
+mesmo bloco na lista do carrinho e não separadamente.
