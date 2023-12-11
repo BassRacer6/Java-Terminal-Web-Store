@@ -3,4 +3,6 @@ com o index do mesmo objeto. Para resolver esse problema eu separei o ID do prod
 ID atualiza de acordo com a posição do item na lista. O cuidado maior necessário está na colocação do ID no lugar do código do produto em meio à remoção do
 respectivo produto. Mecânicas adicionais poderiam ser incrementadas, como quando dois items com o mesmo código são colocados, eles então são representados pelo
 mesmo bloco na lista do carrinho e não separadamente. Caso a confusão de ID com código do produto cause uma confusão constante, o ID poderia ser substituído por
-apenas o uso do código do item.
+apenas o uso do código do item. Como o objetivo declarou que o código da loja poderia ser modificado de acordo com a conveniência, eu usei menos classes e menos
+heranças onde julguei que estas não reduziriam em muito a quantidade de linhas do código além de incrementar na complexidade do mesmo, o que reduziria
+em muito a praticidade do projeto, a qual deveria ser de altíssima prioridade.
