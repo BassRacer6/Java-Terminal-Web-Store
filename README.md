@@ -1,2 +1,2 @@
-# Atividade-04-12-2023
-"Você está participando do processo seletivo para uma vaga de desenvolvedor Jr e, deverá desenvolver um programa para uma loja virtual."
+# Solution to the given problem:
+"You are participating in the selection process for a Junior Developer position and must develop a program for an online store."
